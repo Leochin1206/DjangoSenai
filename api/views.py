@@ -5,6 +5,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework import status
+from rest_framework.permissions import IsAuthenticated
 
 @api_view(['GET', 'POST'])
 def listar_professores(request):
@@ -20,10 +21,12 @@ def listar_professores(request):
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
+
 # vizualiza todos os cadastros feitos e cadastra novos campos
 class ProfessoresView(ListCreateAPIView):
     queryset = Cadastro.objects.all()
     serializer_class = CadastroSerializer
+    permission_classes = [IsAuthenticated]
 
 # Classe que retorna um cadastro feito, podendo fazer o update e o delete tambem
 class ProfessoresDetailView(RetrieveUpdateDestroyAPIView):
