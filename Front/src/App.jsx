@@ -1,20 +1,15 @@
-import React  from 'react';
-import './App.css'
+import React from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Login from "./components/login";
+import Home from "./components/home";
 
 export default function App() {
-  return (
-    <>
-    <div className='container'>
-      <h1>Login</h1>
-
-      <input className='caixa' value={""} placeholder='User'/>
-
-      <input className='caixa' value={""} placeholder='Password' type="password"/>
-
-      <button className='btn'>Ok</button>
-    </div>
-    </>
-  )
+    return (
+        <BrowserRouter> 
+            <Routes>
+                <Route path="/" element={<Login />} />
+                <Route path="/Home" element={<Home />} />
+            </Routes>
+        </BrowserRouter>
+    );
 }
-
-
