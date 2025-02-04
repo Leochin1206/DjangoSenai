@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react"
 import axios from "axios"
 import './stylesHome.css'
+import editIcon from '../../assets/edit.svg'
+import deleteIcon from '../../assets/delete.svg'
+import addIcon from '../../assets/add.svg'
+import searchIcon from '../../assets/search.svg'
 
 export default function Home() {
     const [dados, setDados] = useState([])
@@ -28,14 +32,31 @@ export default function Home() {
         fetchData();
     }, []);
 
+    const edit = (id) => {
+
+    }
+
     return (
-        <div className="PagHome">
-            <h1>Lista de Professores</h1>
-            {dados.map((professor, index) => (
-                <div className="boxProf">
-                    <h2>{professor.nome}</h2>
-                </div>    
-            ))}
-        </div>
+        <>
+            <div className="PagHome">
+                <div className="navBar"></div>
+                <h1>Lista de Professores</h1>
+                <div className="functions">
+                    <img src={addIcon} className="add"/>
+                    <img src={searchIcon} className="search"/>
+                </div>
+                <div className="boxMain">
+                    {dados.map((professor) => (
+                        <div key={professor.id} className="lista">
+                            <div className="boxProf">
+                                <img src={editIcon} className="edit" onClick={()=>edit(professor.id)}/>
+                                <img src={deleteIcon} className="delete" onClick={()=>del(professor.id)}/>
+                            </div>
+                            <h2>{professor.nome}</h2>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </>
     );
 }
