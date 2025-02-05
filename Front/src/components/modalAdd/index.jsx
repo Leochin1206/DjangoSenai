@@ -53,60 +53,22 @@ export default function ModalProfessores({ isOpen, onClose }) {
       <div className="modal-content">
         <h2>Cadastro de Professor</h2>
         <form onSubmit={handleSubmit}>
-          <input 
-            type="text" 
-            name="ni" 
-            placeholder="NI" 
-            value={formData.ni} 
-            onChange={handleChange} 
-            className="modal-input" 
-            required 
-          />
           
-          <input 
-            type="text" 
-            name="nome" 
-            placeholder="Nome" 
-            value={formData.nome} 
-            onChange={handleChange} 
-            className="modal-input" 
-            required 
-          />
+          <input type="text" name="ni" placeholder="NI" value={formData.ni} onChange={handleChange} className="modal-input" required />
           
-          <input 
-            type="email" 
-            name="email" 
-            placeholder="Email" 
-            value={formData.email} 
-            onChange={handleChange} 
-            className="modal-input" 
-            required 
-          />
+          <input type="text" name="nome" placeholder="Nome" value={formData.nome} onChange={handleChange} className="modal-input" required />
           
-          <input 
-            type="tel" 
-            name="cel" 
-            placeholder="Celular" 
-            value={formData.cel} 
-            onChange={handleChange} 
-            className="modal-input" 
-            required 
-          />
+          <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} className="modal-input" required />
           
-          <input 
-            type="text" 
-            name="ocup" 
-            placeholder="Ocupação" 
-            value={formData.ocup} 
-            onChange={handleChange} 
-            className="modal-input" 
-            required 
-          />
+          <input type="tel" name="cel" placeholder="Celular" value={formData.cel} onChange={handleChange} className="modal-input"  required />
+          
+          <input type="text" name="ocup"  placeholder="Ocupação"  value={formData.ocup}  onChange={handleChange}  className="modal-input"  required />
           
           <div className="modal-buttons">
             <button type="submit" className="btnSave">Salvar</button>
             <button type="button" onClick={onClose} className="btnCancel">Cancelar</button>
           </div>
+
         </form>
       </div>
     </div>

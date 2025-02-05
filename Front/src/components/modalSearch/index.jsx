@@ -34,18 +34,10 @@ export default function ModalSearch({ isOpen, onClose }) {
 
     return (
         <div className="modal-container">
-            <div className="modal-content">
+            <div className="modal-content-search">
                 <h2>Pesquisa de Professor</h2>
                 <form onSubmit={handleSubmit}>
-                    <input
-                        type="text"
-                        name="id"
-                        placeholder="ID"
-                        value={formData.id}
-                        onChange={handleChange}
-                        className="modal-input"
-                        required
-                    />
+                    <input type="text" name="id" placeholder="ID" value={formData.id} onChange={handleChange} className="modal-input" required/>
 
                     {searchResult && (
                         <div className="search-result">
