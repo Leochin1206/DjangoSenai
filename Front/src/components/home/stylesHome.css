@@ -88,7 +88,7 @@
 }
 
 .functions .search{
-  background-color: #0077b6;
+  background-color: #1e40af;
   width: 100px;
   height: 40px;
   border-radius: 8px;
@@ -102,7 +102,7 @@
 }
 
 .functions .add{
-  background-color: #588157;
+  background-color: #028a02;
   width: 100px;
   height: 40px;
   border-radius: 8px;
@@ -111,7 +111,7 @@
 }
 
 .functions .add:hover{
-  background-color: #1b4332;
+  background-color: #047204;
   cursor: pointer;
 }
 

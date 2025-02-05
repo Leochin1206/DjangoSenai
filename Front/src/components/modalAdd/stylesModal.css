@@ -1,0 +1,79 @@
+.modal-container {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #00000080;
+}
+
+.modal-content {
+    background-color: #ced4da;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px #0000001a;
+    width: 60rem;
+    height: 30rem;
+}
+
+.modal-content h2{
+    color: #000;
+    font-size: 2.2rem;
+    font-weight: bold;
+    margin: 0.5rem 0 1.4rem 0;
+}
+
+.modal-input {
+    width: 96%;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 0.25rem;
+    margin-bottom: 0.75rem;
+    font-size: 1.1rem;
+}
+
+.modal-input::placeholder {
+    font-size: 1.1rem;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+
+.modal-buttons button {
+    font-size: 1.3rem;
+    font-weight: bold;
+    padding: 0.9rem 1.6rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+}
+
+/*
+.modal-buttons button {
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+}
+*/
+
+.modal-buttons button.btnSave{
+    background-color: #1e40af;
+    color: #fff;
+}
+
+.modal-buttons button.btnSave:hover {
+    background-color: #183183;
+    color: #fff;
+}
+
+.modal-buttons button.btnCancel {
+    background-color: #718096;
+    color: #fff;
+}
+
+.modal-buttons button.btnCancel:hover {
+    background-color: #5a6577;
+    color: #fff;
+}
