@@ -1,31 +1,39 @@
+// importação das libs
 import React, { useState } from "react";
 import axios from "axios";
+
+// importação do css
 import "../modalAdd/stylesModal.css";
 
 export default function ModalSearch({ isOpen, onClose }) {
-    if (!isOpen) return null;
+    if (!isOpen) return null; // Se o modal não estiver aberto, não renderiza nada.
 
-    const [formData, setFormData] = useState({
+    const [formData, setFormData] = useState({ // Cria o estado para armazenar o ID do professor a ser buscado
         id: "",
     });
-    const [searchResult, setSearchResult] = useState(null); // Para armazenar o resultado da busca
 
-    const token = localStorage.getItem('token');
+    const [searchResult, setSearchResult] = useState(null); // Cria o estado para armazenar o resultado da busca
 
+    const token = localStorage.getItem('token');  // Pega o token de autenticação do localStorage.
+
+    // [e.target.name] acessa o atributo name do elemento (input) que disparou o evento
+    // [e.target.value] é o valor atual do campo de input
     const handleChange = (e) => {
+        // Atualiza os dados quando há alteração em um campo
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
+        e.preventDefault(); // Impede o comportamento padrão do formulário (recarregar a página).
+
         try {
-            // Realizando a requisição GET para buscar o professor pelo ID com o token no cabeçalho
+            // Realizando a requisição GET para buscar o professor pelo ID com o token
             const response = await axios.get(`http://127.0.0.1:8000/api/id/${formData.id}`, {
                 headers: {
-                    Authorization: `Bearer ${token}`, // Passando o token no cabeçalho
+                    Authorization: `Bearer ${token}`, // Envia o token para autenticação.
                 },
             });
-            setSearchResult(response.data); // Armazenando o resultado da busca
+            setSearchResult(response.data); // Armazena os dados do Professor
         } catch (error) {
             console.error("Erro ao buscar professor:", error);
             alert("Erro ao buscar professor.");
@@ -36,8 +44,9 @@ export default function ModalSearch({ isOpen, onClose }) {
         <div className="modal-container">
             <div className="modal-content-search">
                 <h2>Pesquisa de Professor</h2>
+                {/* Ao clicar em "Pesquisar", a função handleSubmit será executada */}
                 <form onSubmit={handleSubmit}>
-                    <input type="text" name="id" placeholder="ID" value={formData.id} onChange={handleChange} className="modal-input" required/>
+                    <input type="text" name="id" placeholder="ID" value={formData.id} onChange={handleChange} className="modal-input" required />
 
                     {searchResult && (
                         <div className="search-result">
