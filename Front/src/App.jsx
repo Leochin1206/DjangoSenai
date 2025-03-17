@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./components/login";
 import Home from "./components/home";
+import Disciplinas from "./components/disciplinas";
 
 export default function App() {
     return (
@@ -9,6 +10,7 @@ export default function App() {
             <Routes>
                 <Route path="/" element={<Login />} />
                 <Route path="/Home" element={<Home />} />
+                <Route path="/Disciplinas" element={<Disciplinas />}/>
             </Routes>
         </BrowserRouter>
     );

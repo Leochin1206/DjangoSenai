@@ -7,3 +7,9 @@ class Cadastro(models.Model):
     cel = models.CharField(max_length=255)
     ocup = models.FloatField()
     
+class CadastroDisciplinas(models.Model):
+    disciplina = models.CharField(max_length=255)
+    sigla = models.CharField(max_length=255)
+    curso = models.CharField(max_length=255)
+    semestre = models.IntegerField()
+    carga_horaria = models.IntegerField()

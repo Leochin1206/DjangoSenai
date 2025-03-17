@@ -3,9 +3,9 @@ import React, { useState } from "react";
 import axios from "axios";
 
 // importação do css
-import "../modalAdd/stylesModal.css";
+import "../modalAddDisc/stylesModalDisc.css";
 
-export default function ModalSearch({ isOpen, onClose }) {
+export default function ModalSearchDisc({ isOpen, onClose }) {
     if (!isOpen) return null; // Se o modal não estiver aberto, não renderiza nada.
 
     const [formData, setFormData] = useState({ // Cria o estado para armazenar o ID do professor a ser buscado
@@ -28,7 +28,7 @@ export default function ModalSearch({ isOpen, onClose }) {
 
         try {
             // Realizando a requisição GET para buscar o professor pelo ID com o token
-            const response = await axios.get(`http://127.0.0.1:8000/api/prof/id/${formData.id}`, {
+            const response = await axios.get(`http://127.0.0.1:8000/api/disci/id/${formData.id}`, {
                 headers: {
                     Authorization: `Bearer ${token}`, // Envia o token para autenticação.
                 },
@@ -52,11 +52,11 @@ export default function ModalSearch({ isOpen, onClose }) {
                         <div className="search-result">
                             <h3>Resultado da Pesquisa:</h3>
                             <p>ID: {searchResult.id}</p>
-                            <p>NI: {searchResult.ni}</p>
-                            <p>Nome: {searchResult.nome}</p>
-                            <p>Email: {searchResult.email}</p>
-                            <p>Celular: {searchResult.cel}</p>
-                            <p>Ocupação: {searchResult.ocup}</p>
+                            <p>Disciplina: {searchResult.disciplina}</p>
+                            <p>Sigla: {searchResult.sigla}</p>
+                            <p>Curso: {searchResult.curso}</p>
+                            <p>Semestre: {searchResult.semestre}</p>
+                            <p>Carga Horária: {searchResult.carga_horaria}</p>
                         </div>
                     )}
 
