@@ -3,17 +3,16 @@ import React, { useState } from "react";
 import axios from "axios";
 
 // importação do css
-import "./stylesModalDisc.css";
+import "./stylesModalCurs.css";
 
-export default function ModalAddDisc({ isOpen, onClose }) {
+export default function ModalAddCurs({ isOpen, onClose }) {
   if (!isOpen) return null; // Se o modal não estiver aberto, não renderiza nada.
 
   const [formData, setFormData] = useState({ // Estado para armazenar os dados do Professor
-    disciplina: "",
+    nome: "",
     sigla: "",
-    curso: "",
-    semestre: "",
-    carga_horaria: "",
+    tipo_de_curso: "",
+    carga_horaria_curso: "",
   });
 
   const token = localStorage.getItem('token');  // Pega o token de autenticação do localStorage.
@@ -35,7 +34,7 @@ export default function ModalAddDisc({ isOpen, onClose }) {
 
     try {
       // Realizando a requisição POST para cadastrar um novo professor
-      const response = await axios.post("http://127.0.0.1:8000/api/disciplina", formData, {
+      const response = await axios.post("http://127.0.0.1:8000/api/curso", formData, { 
         headers: {
           Authorization: `Bearer ${token}`, // Envia o token para autenticação.
         },
@@ -53,19 +52,17 @@ export default function ModalAddDisc({ isOpen, onClose }) {
   return (
     <div className="modal-container">
       <div className="modal-content">
-        <h2>Cadastro de Professor</h2>
+        <h2>Cadastro de Curso</h2>
         {/* Ao clicar em "Salvar", a função handleSubmit será executada */}
         <form onSubmit={handleSubmit}>
 
-          <input type="text" name="disciplina" placeholder="Disciplina" value={formData.disciplina} onChange={handleChange} className="modal-input" required />
+          <input type="text" name="nome" placeholder="Nome" value={formData.nome} onChange={handleChange} className="modal-input" required />
 
           <input type="text" name="sigla" placeholder="Sigla" value={formData.sigla} onChange={handleChange} className="modal-input" required />
 
-          <input type="text" name="curso" placeholder="Curso" value={formData.curso} onChange={handleChange} className="modal-input" required />
+          <input type="text" name="tipo_de_curso" placeholder="Tipo de Curso" value={formData.tipo_de_curso} onChange={handleChange} className="modal-input" required />
 
-          <input type="number" name="semestre" placeholder="Semestre" value={formData.semestre} onChange={handleChange} className="modal-input" required />
-
-          <input type="number" name="carga_horaria" placeholder="Carga Horária" value={formData.carga_horaria} onChange={handleChange} className="modal-input" required />
+          <input type="number" name="carga_horaria_curso" placeholder="Carga Horaria" value={formData.carga_horaria_curso} onChange={handleChange} className="modal-input" required />
 
           <div className="modal-buttons">
             <button type="submit" className="btnSave">Salvar</button>

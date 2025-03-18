@@ -68,8 +68,10 @@ export default function Home() {
         <>
             <div className="PagHome">
                 <div className="navBar">
-                    <Link to="/Home"><h1>Professores</h1></Link>
+                    <Link to="/Ambientes"><h1>Ambientes</h1></Link>
+                    <Link to="/Cursos"><h1>Cursos</h1></Link>
                     <Link to="/Disciplinas"><h1>Disciplinas</h1></Link>
+                    <Link to="/Home"><h1>Professores</h1></Link>
                 </div>
                 <h1>Lista de Professores</h1>
                 <div className="functions">

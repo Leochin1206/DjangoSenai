@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 // importação do css
-import './stylesDisciplina.css';
+import './stylesAmbiente.css';
 
 // importação dos icones usados
 import editIcon from '../../assets/edit.svg';
@@ -13,16 +13,16 @@ import addIcon from '../../assets/add.svg';
 import searchIcon from '../../assets/search.svg';
 
 // impotação dos modais
-import ModalAddDisc from "../modalAddDisc";
-import ModalSearchDisc from "../modalSearchDisc";
-import ModalEditDisc from "../modalEditDisc";
+import ModalAddAmb from "../modalAddAmb";
+import ModalSearchAmb from "../modalSearchAmb";
+import ModalEditAmb from "../modalEditAmb";
 
-export default function Disciplinas() {
+export default function Ambientes() {
     const [dados, setDados] = useState([]); // Estado para armazenar a lista de professores
     const [modalOpen, setModalOpen] = useState(false); // Estado para a abertura do modal de adição de professores
-    const [modalSearchDisc, setModalSearchDisc] = useState(false); // Estado para a abertura do modal de pesquisa de professores
-    const [modalEditDisc, setModalEditDisc] = useState(false);  // Estado para a abertura do modal de edição de professores
-    const [selectedDisciplinaId, setSelectedDisciplinaId] = useState(null); // Estado para armazenar o ID do professor para edição
+    const [modalSearch, setModalSearch] = useState(false); // Estado para a abertura do modal de pesquisa de professores
+    const [modalEdit, setModalEdit] = useState(false);  // Estado para a abertura do modal de edição de professores
+    const [selectedAmbienteId, setSelectedAmbienteId] = useState(null); // Estado para armazenar o ID do professor para edição
     const token = localStorage.getItem('token'); // Obtém o token de autenticação armazenado no localStorage
 
     // useEffect que executa a função de busca de professores quando o token muda
@@ -32,7 +32,7 @@ export default function Disciplinas() {
         const fetchData = async () => {
             try {
                 // Realizando a requisição GET para buscar o professor pelo ID com o token
-                const response = await axios.get("http://127.0.0.1:8000/api/disciplina", {
+                const response = await axios.get("http://127.0.0.1:8000/api/ambiente", {
                     headers: { Authorization: `Bearer ${token}` }, // Envia o token para autenticação.
                 });
                 setDados(response.data); // Salva os dados dos professores
@@ -49,10 +49,10 @@ export default function Disciplinas() {
         if (window.confirm("Tem certeza?")) { // Pergunta ao usuário se deseja realmente excluir
             try {
                 // Realizando a requisição DELETE para apagar os dados do professor identificado por "id"
-                await axios.delete(`http://127.0.0.1:8000/api/disci/id/${id}`, {
+                await axios.delete(`http://127.0.0.1:8000/api/ambi/id/${id}`, {
                     headers: { Authorization: `Bearer ${token}` }, // Envia o token para autorização
                 });
-                setDados(dados.filter(disciplina => disciplina.id !== id)); // Remove o professor da lista exibida
+                setDados(dados.filter(ambiente => ambiente.id !== id)); // Remove o professor da lista exibida
             } catch (error) {
                 console.error(error);
             }
@@ -60,8 +60,8 @@ export default function Disciplinas() {
     };
 
     const openEditModal = (id) => {
-        setSelectedDisciplinaId(id); // Salva o ID do professor que será editado
-        setModalEditDisc(true); // Abre o modal de edição
+        setSelectedAmbienteId(id); // Salva o ID do professor que será editado
+        setModalEdit(true); // Abre o modal de edição
     };
 
     return (
@@ -73,27 +73,27 @@ export default function Disciplinas() {
                     <Link to="/Disciplinas"><h1>Disciplinas</h1></Link>
                     <Link to="/Home"><h1>Professores</h1></Link>
                 </div>
-                <h1>Lista de Disciplinas</h1>
+                <h1>Lista de Ambientes</h1>
                 <div className="functions">
                     <img src={addIcon} className="add" onClick={() => setModalOpen(true)} />
-                    <img src={searchIcon} className="search" onClick={() => setModalSearchDisc(true)} />
+                    <img src={searchIcon} className="search" onClick={() => setModalSearch(true)} />
                 </div>
-                <ModalAddDisc isOpen={modalOpen} onClose={() => setModalOpen(false)} />
-                <ModalSearchDisc isOpen={modalSearchDisc} onClose={() => setModalSearchDisc(false)} />
+                <ModalAddAmb isOpen={modalOpen} onClose={() => setModalOpen(false)} />
+                <ModalSearchAmb isOpen={modalSearch} onClose={() => setModalSearch(false)} />
                 <div className="boxMain">
                     {/* Percorre a array DADOS(que contem os dados dos Profs) e apresenta os dados */}
-                    {dados.map((disciplina) => (
-                        <div key={disciplina.id} className="lista">
-                            <h2>ID {disciplina.id}</h2>
-                            <h2>{disciplina.disciplina}</h2>
+                    {dados.map((ambiente) => (
+                        <div key={ambiente.id} className="lista">
+                            <h2>ID {ambiente.id}</h2>
+                            <h2>Sala {ambiente.sala}</h2>
                             <div className="boxProf">
-                                <img src={editIcon} className="edit" onClick={() => openEditModal(disciplina.id)} />
-                                <img src={deleteIcon} className="delete" onClick={() => del(disciplina.id)} />
+                                <img src={editIcon} className="edit" onClick={() => openEditModal(ambiente.id)} />
+                                <img src={deleteIcon} className="delete" onClick={() => del(ambiente.id)} />
                             </div>
                         </div>
                     ))}
                 </div>
-                <ModalEditDisc isOpen={modalEditDisc} onClose={() => setModalEditDisc(false)} disciplinaId={selectedDisciplinaId} />
+                <ModalEditAmb isOpen={modalEdit} onClose={() => setModalEdit(false)} ambienteId={selectedAmbienteId} />
             </div>
         </>
     );
